@@ -36,7 +36,6 @@ public class StudentServiceImpl implements StudentService {
         Student newStudent = new Student();
         newStudent.setName(studentCreateDTO.getName());
         newStudent.setEmail(studentCreateDTO.getEmail());
-        // Set other fields if needed
 
         studentRepository.save(newStudent);
     }
@@ -54,14 +53,10 @@ public class StudentServiceImpl implements StudentService {
     @Transactional
     public void updateStudent(Long studentId, StudentUpdateDTO updatedStudentDTO) {
         Optional<Student> existingStudentOptional = studentRepository.findById(studentId);
-        //if (existingStudentOptional.isEmpty()) {
-        //    throw new IllegalStateException("Student with id " + studentId + " does not exist");
-        //}
 
         Student existingStudent = existingStudentOptional.get();
         existingStudent.setEmail(updatedStudentDTO.getEmail());
         existingStudent.setName(updatedStudentDTO.getName());
-        // Update other fields as needed
 
         studentRepository.save(existingStudent);
     }
