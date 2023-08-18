@@ -1,10 +1,10 @@
-package com.example.demo.dto;
+package com.example.demo.model;
 
-public class StudentCreateDTO {
+public class StudentUpdate {
     private String name;
     private String email;
 
-    public StudentCreateDTO(String name, String email) {
+    public StudentUpdate(String name, String email) {
         this.name = name;
         this.email = email;
     }
@@ -12,7 +12,6 @@ public class StudentCreateDTO {
     public String getName() {
         return name;
     }
-
 
     public String getEmail() {
         return email;

@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.StudentCreateDTO;
-import com.example.demo.dto.StudentUpdateDTO;
-import com.example.demo.model.Student;
+import com.example.demo.model.StudentCreate;
+import com.example.demo.model.StudentUpdate;
+import com.example.demo.entity.Student;
 import com.example.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +26,8 @@ public class StudentController {
     }
 
     @PostMapping
-    public void addNewStudent(@RequestBody StudentCreateDTO studentCreateDTO) {
-        studentService.addNewStudent(studentCreateDTO);
+    public void addNewStudent(@RequestBody StudentCreate studentCreate) {
+        studentService.addNewStudent(studentCreate);
     }
 
 
@@ -37,7 +37,7 @@ public class StudentController {
     }
 
     @PutMapping(path = "{studentId}")
-    public void updateStudent(@PathVariable("studentId") Long studentId, @RequestBody StudentUpdateDTO updatedStudentDTO) {
+    public void updateStudent(@PathVariable("studentId") Long studentId, @RequestBody StudentUpdate updatedStudentDTO) {
         studentService.updateStudent(studentId, updatedStudentDTO);
     }
 }

@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.StudentCreateDTO;
-import com.example.demo.dto.StudentUpdateDTO;
-import com.example.demo.model.Student;
+import com.example.demo.model.StudentCreate;
+import com.example.demo.model.StudentUpdate;
+import com.example.demo.entity.Student;
 import com.example.demo.repository.StudentRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +28,15 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void addNewStudent(StudentCreateDTO studentCreateDTO) {
-        Optional<Student> studentOptional = studentRepository.findStudentByEmail(studentCreateDTO.getEmail());
+    public void addNewStudent(StudentCreate studentCreate) {
+        Optional<Student> studentOptional = studentRepository.findStudentByEmail(studentCreate.getEmail());
         if (studentOptional.isPresent()) {
             throw new IllegalStateException("email taken");
         }
 
         Student newStudent = new Student();
-        newStudent.setName(studentCreateDTO.getName());
-        newStudent.setEmail(studentCreateDTO.getEmail());
+        newStudent.setName(studentCreate.getName());
+        newStudent.setEmail(studentCreate.getEmail());
 
         studentRepository.save(newStudent);
     }
@@ -51,7 +51,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void updateStudent(Long studentId, StudentUpdateDTO updatedStudentDTO) {
+    public void updateStudent(Long studentId, StudentUpdate updatedStudentDTO) {
         Optional<Student> existingStudentOptional = studentRepository.findById(studentId);
 
         Student existingStudent = existingStudentOptional.get();
