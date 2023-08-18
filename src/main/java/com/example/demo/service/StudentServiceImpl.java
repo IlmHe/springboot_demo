@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 @Service
 public class StudentServiceImpl implements StudentService {
 
@@ -50,7 +51,6 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    @Transactional
     public void updateStudent(Long studentId, StudentUpdateDTO updatedStudentDTO) {
         Optional<Student> existingStudentOptional = studentRepository.findById(studentId);
 
